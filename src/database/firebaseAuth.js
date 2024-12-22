@@ -1,7 +1,16 @@
+// import {
+//   createUserWithEmailAndPassword,
+//   getAuth,
+//   signInWithEmailAndPassword,
+//   signOut,
+// } from 'firebase/auth';
+// import app from './firebaseConfig';
+
 import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import app from './firebaseConfig';
 
@@ -35,6 +44,7 @@ const registerUser = async data => {
 const loginUser = async ({ email, password }) => {
   try {
     const response = await signInWithEmailAndPassword(auth, email, password);
+
     const user = response.user;
 
     return {
@@ -50,6 +60,12 @@ const loginUser = async ({ email, password }) => {
   }
 };
 
-const logOutUser = async () => {};
+const logOutUser = async () => {
+  signOut(auth)
+    .then(() => {})
+    .catch(error => {
+      // An error happened.
+    });
+};
 
-export { registerUser, loginUser, logOutUser, auth };
+export { registerUser, logOutUser, loginUser, auth };

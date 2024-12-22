@@ -8,23 +8,25 @@ import {
 } from 'firebase/database';
 import app from './firebaseConfig';
 
-const db = getDatabase(app);
+export const db = getDatabase(app);
 
-// read / get data from database
+// Read/Get data from database;
 export const getFirebaseData = async tableName => {
   const starCountRef = ref(db, tableName);
+
   return new Promise((resolve, reject) => {
     try {
       onValue(starCountRef, snapshot => {
-        const updateCategoriesList = [];
+        const updateCategoryList = [];
+
         snapshot.forEach(item => {
-          updateCategoriesList.push({
+          updateCategoryList.push({
             id: item.key,
             ...item.val(),
           });
         });
 
-        resolve(updateCategoriesList);
+        resolve(updateCategoryList);
       });
     } catch (error) {
       reject(error);
@@ -34,6 +36,7 @@ export const getFirebaseData = async tableName => {
 
 export const getFirebaseDataForEdit = async tableName => {
   const starCountRef = ref(db, tableName);
+
   return new Promise((resolve, reject) => {
     try {
       onValue(starCountRef, snapshot => {
@@ -45,6 +48,7 @@ export const getFirebaseDataForEdit = async tableName => {
   });
 };
 
+// Write/Set/Push data to database;
 export const setDataToFirebase = (tableName, data) => {
   push(ref(db, tableName), data);
 };
@@ -54,22 +58,24 @@ export const updateDataFromFirebase = (tableName, data) => {
   set(ref(db, tableName), data);
 };
 
-export const deleteDataFromFirebase = async tableName => {
-  const dbRef = ref(db, tableName);
-  try {
-    await remove(dbRef);
-  } catch (error) {
-    throw new Error(error.message);
-  }
+// Remove data from firebase;
+export const removeDataFromFirebase = tableName => {
+  return new Promise((resolve, reject) => {
+    try {
+      resolve(remove(ref(db, tableName)));
+    } catch (error) {
+      reject(error);
+    }
+  });
 };
 
-// ************************* user profile ****************************
-
-export const creatUserProfile = async data => {
-  const { id, name, role } = data;
+// ******************************* User Profile *************************** //
+export const createUserProfile = async data => {
+  const { id, name, role, email } = data;
   set(ref(db, 'userProfile/' + id), {
     name,
     role,
+    email,
   });
 };
 

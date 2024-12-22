@@ -1,53 +1,67 @@
-import { BrowserRouter, Route, Routes } from "react-router";
-import Dashbord from "./assets/Dashbord";
 
 
-import ErrorPage from "./ErrorPage";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from "react-toastify";
-
-import Home from "./pages/Home";
-import CreatCategory from "./pages/categoryForm/Index";
-import CreatProduct from "./pages/productForm/Index";
-import LoginPage from "./pages/auth/Login";
-import RegistrationPage from "./pages/auth/Register";
+import { Route, Routes } from "react-router";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 import Private from "./pages/auth/Private";
+import DashboardLayout from "./layout/DashboardLayout";
+import HomeDashboard from "./pages/dashboard/home/Index";
+import IndexCategory from "./pages/dashboard/category/Index";
+import CreateCategory from "./pages/dashboard/category/Create";
+import IndexProduct from "./pages/dashboard/product/Index";
+import CreateProduct from "./pages/dashboard/product/Creat";
+import Error from "./Error"
+import HomeLayout from "./layout/HomeLayout";
+import HomeIndex from "./frontEnd/home";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import './index.css';
 
 
 
-
-function App() {
-  return (
-    <>
-      <ToastContainer />
-      <BrowserRouter>
+export default function App() {
+    return (
         <Routes>
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/login" element={<LoginPage />} />
-
-          <Route element={<Private />} >
-
-            <Route path="dashboard" element={<Dashbord />}>
-              <Route index element={<Home />} />
-              <Route path="creatCategori" element={<CreatCategory />} />
-              <Route path="edit-category/:id" element={<CreatCategory />} />
-              <Route path="creatProduct" element={<CreatProduct />} />
-              <Route path="edit-product/:id" element={<CreatProduct />} />
-
-              {/* Error Route */}
-              <Route path="*" element={<ErrorPage />} />
+            <Route path="/" element={<HomeLayout />}>
+                <Route index element={<HomeIndex />} />
             </Route>
-          </Route>
 
+            {/* Auth Route */}
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+
+            <Route element={<Private />}>
+                <Route path="dashboard" element={<DashboardLayout />}>
+                    <Route index element={<HomeDashboard />} />
+
+                    {/* ============ Category ================= */}
+                    <Route path="index-category" element={<IndexCategory />} />
+                    <Route
+                        path="create-category"
+                        element={<CreateCategory />}
+                    />
+                    <Route
+                        path="edit-category/:id"
+                        element={<CreateCategory />}
+                    />
+
+                    {/* ============ Product ================= */}
+                    <Route path="index-product" element={<IndexProduct />} />
+                    <Route path="create-product" element={<CreateProduct />} />
+                    <Route
+                        path="edit-product/:id"
+                        element={<CreateProduct />}
+                    />
+
+                    {/* Error Route */}
+                    <Route path="*" element={<Error />} />
+                </Route>
+            </Route>
         </Routes>
-      </BrowserRouter>
-
-
-    </>
-
-
-
-  );
+    );
 }
 
-export default App;
+// catetory/index
+// category/create
+// category/edit/:id

@@ -1,13 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit';
+// import { configureStore } from '@reduxjs/toolkit';
+// import productSlice from '../features/products/productsSlice';
+// import categorySlice from '../features/categories/categorySlice';
+// import authSlice from '../features/auth/authSlice';
 
-import CategoriesSlice from '../features/categories/categoriesSlice';
+import { configureStore } from '@reduxjs/toolkit';
 import productSlice from '../features/product/ProductSlice';
+import categorySlice from '../features/categories/categoriesSlice';
 import authSlice from '../features/auth/authSlice';
 
 const store = configureStore({
   reducer: {
-    categories: CategoriesSlice,
     products: productSlice,
+    categories: categorySlice,
     auth: authSlice,
   },
 });
