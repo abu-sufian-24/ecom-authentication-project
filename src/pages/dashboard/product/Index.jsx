@@ -20,7 +20,7 @@ export default function IndexProduct() {
         let findCat = categories.find((d) => d.id === item.productCategory);
         return {
             ...item,
-            productCategory: findCat ? findCat.categoryName : 'Unknown',
+            productCategory: findCat ? findCat?.categoryName : 'Unknown',
         };
     });
 

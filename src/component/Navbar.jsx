@@ -1,8 +1,19 @@
 ;
+
 import { FaThLarge } from "react-icons/fa";
 import { FiSearch, FiUser, FiShoppingCart } from "react-icons/fi";
+import { useSelector } from "react-redux";
+
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
+  const navigat = useNavigate();
+
+  const { cart } = useSelector((store) => store.cart);
+
+
+
+
   return (
     <>
       <header className=" text-white">
@@ -21,7 +32,7 @@ const Navbar = () => {
         {/* Main navbar */}
         <div className=" container mx-auto flex justify-between items-center px-4 py-3 ">
           {/* Logo */}
-          <div className="text-2xl font-bold text-red-600">divineshop</div>
+          <div onClick={() => navigat("/")} className=" cursor-pointer text-2xl font-bold text-red-600">divineshop</div>
 
           {/* Search bar */}
           <div className="relative flex-1 mx-4">
@@ -52,8 +63,14 @@ const Navbar = () => {
 
             {/* Cart icon */}
             <div className="relative cursor-pointer  bg-slate-200 p-2">
-              <FiShoppingCart size={24} />
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">3</span>
+              <button onClick={() => navigat("/cart-details")}>
+                <FiShoppingCart size={24} />
+              </button>
+
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
+                {!cart ? 0 : cart.length}
+
+              </span>
             </div>
           </div>
         </div>

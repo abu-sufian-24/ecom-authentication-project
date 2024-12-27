@@ -31,11 +31,13 @@ const Login = () => {
     } else {
       // Login User;
       let userProfile = await getProfile(res.id);
+      console.log(userProfile);
+
       const loginUserInfo = {
         id: res.id,
         email: res.email,
-        name: userProfile.name,
-        role: userProfile.role,
+        name: userProfile?.name,
+        role: userProfile?.role,
       };
 
       dispatch(setLoginUserDataToRedux(loginUserInfo));
@@ -59,7 +61,10 @@ const Login = () => {
 
       if (!userProfile || userProfile.email != user.email) {
         // Create a new user;
-        createUserProfile(newUser);
+        createUserProfile({
+          ...newUser,
+          role: "user",
+        });
         dispatch(
           setLoginUserDataToRedux({
             ...newUser,

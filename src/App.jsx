@@ -17,6 +17,8 @@ import HomeIndex from "./frontEnd/home";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './index.css';
+import ProductIndex from "./frontEnd/product/ProductIndex";
+import CartDetails from "./frontEnd/addToCartDetails/CartDetails";
 
 
 
@@ -25,6 +27,8 @@ export default function App() {
         <Routes>
             <Route path="/" element={<HomeLayout />}>
                 <Route index element={<HomeIndex />} />
+                <Route path="product-index/:id" element={<ProductIndex />} />
+                <Route path="cart-details" element={<CartDetails />} />
             </Route>
 
             {/* Auth Route */}
