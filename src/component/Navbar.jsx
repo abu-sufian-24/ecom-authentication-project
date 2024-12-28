@@ -1,4 +1,4 @@
-import { FaThLarge } from "react-icons/fa";
+
 import { FiSearch, FiUser, FiShoppingCart } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";

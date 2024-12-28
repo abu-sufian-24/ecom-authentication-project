@@ -1,4 +1,5 @@
-import CategorySection from "./category/categorySection";
+
+import CategorySection from "./category/CategorySection";
 import Facilities from "./Facilities";
 import ProductSection from "./product/ProductSection";
 import SliderSection from "./SliderSection";
@@ -12,6 +13,7 @@ function HomeIndex() {
     <>
       <SliderSection />
       <Facilities />
+
       <CategorySection />
       <ProductSection />
     </>
