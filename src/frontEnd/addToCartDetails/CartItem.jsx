@@ -35,7 +35,7 @@ function CartItem({ cart }) {
       quantity: quantity === 1 ? 1 : quantity - 1,
     });
   }
-
+  
 
 
 

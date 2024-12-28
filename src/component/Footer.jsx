@@ -56,7 +56,7 @@ const Footer = () => {
             70 Washington Square South, New York, NY 10012, United States
           </p>
           <p className="text-sm mb-4">Email: ulib.help@gmail.com</p>
-          <p className="text-sm mb-4">Phone: +1 1123 456 780</p>
+          <p className="text-sm mb-4">Phone: +8801887 484441</p>
           <div className="flex space-x-4">
             <FaFacebookF className="cursor-pointer hover:text-blue-500" />
             <FaTwitter className="cursor-pointer hover:text-blue-400" />
